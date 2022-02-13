@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ServiceCreditRequest.Models.Incoming.Request
+namespace CreditProjectRequestsModels.Models.EvaluateRequest.Request
 {
-    public class CreditApplicantCreateRequest
+    public class CreditApplicantEvaluateRequest
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

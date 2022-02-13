@@ -1,4 +1,4 @@
-﻿using CreditScoring.Models.ScoringResultRequest.Request;
+﻿using CreditProjectRequestsModels.Models.ScoringResultRequest.Request;
 using System.Threading.Tasks;
 
 namespace CreditScoring.Data.SendResult.Interfaces

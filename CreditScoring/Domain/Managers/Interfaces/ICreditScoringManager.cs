@@ -1,4 +1,4 @@
-﻿using ServiceCreditRequest.Models.Incoming.Request;
+﻿using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
 using System.Threading.Tasks;
 
 namespace CreditScoring.Domain.Managers.Interfaces

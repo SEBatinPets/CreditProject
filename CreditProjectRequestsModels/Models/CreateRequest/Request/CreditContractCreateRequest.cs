@@ -1,6 +1,6 @@
-﻿namespace ServiceCreditRequest.Models.Outcoming.EvaluateRequest.Request
+﻿namespace CreditProjectRequestsModels.Models.CreateRequest.Request
 {
-    public class CreditContractEvaluateRequest
+    public class CreditContractCreateRequest
     {
         public int CreditType { get; set; }
         public decimal RequestedAmount { get; set; }

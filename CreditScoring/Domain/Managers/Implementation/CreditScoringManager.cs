@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
 using CreditScoring.Data.Repository.Interfaces;
 using CreditScoring.Domain.Managers.Interfaces;
 using Microsoft.Extensions.Logging;
 using ServiceCreditRequest.Models.Entities;
-using ServiceCreditRequest.Models.Incoming.Request;
 using System;
 using System.Threading.Tasks;
 

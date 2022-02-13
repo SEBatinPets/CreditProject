@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace ServiceCreditRequest.Models.Outcoming.Response
+namespace CreditProjectRequestsModels.Models.StatusRequest.Response
 {
+    /// <summary>
+    /// результаты скоринга заявки на кредит
+    /// </summary>
     public class CreditRequestStatusResponse
     {
         public int Id { get; set; }

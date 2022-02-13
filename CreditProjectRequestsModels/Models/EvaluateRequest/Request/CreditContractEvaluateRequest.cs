@@ -1,4 +1,4 @@
-﻿namespace ServiceCreditRequest.Models.Incoming.Request
+﻿namespace CreditProjectRequestsModels.Models.EvaluateRequest.Request
 {
     public class CreditContractEvaluateRequest
     {

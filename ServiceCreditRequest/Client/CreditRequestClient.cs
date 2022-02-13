@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using ServiceCreditRequest.Models.Outcoming.EvaluateRequest.Request;
 using System;
 using System.Net.Http;
 using System.Text;

@@ -1,6 +1,6 @@
-﻿using CreditScoring.Data.Repository.Interfaces;
+﻿using CreditProjectRequestsModels.Models.ScoringResultRequest.Request;
+using CreditScoring.Data.Repository.Interfaces;
 using CreditScoring.Data.SendResult.Interfaces;
-using CreditScoring.Models.ScoringResultRequest.Request;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiceCreditRequest.Models.Entities;

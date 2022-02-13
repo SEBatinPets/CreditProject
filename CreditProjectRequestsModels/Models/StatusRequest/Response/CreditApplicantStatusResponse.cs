@@ -1,4 +1,4 @@
-﻿namespace ServiceCreditRequest.Models.Outcoming.Response
+﻿namespace CreditProjectRequestsModels.Models.StatusRequest.Response
 {
     public class CreditApplicantStatusResponse
     {

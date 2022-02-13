@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace ServiceCreditRequest.Models.Incoming.Request
+namespace CreditProjectRequestsModels.Models.CreateRequest.Request
 {
+    /// <summary>
+    /// запрос создания заявки на кредит
+    /// </summary>
     public class CreditRequestCreateRequest
     {
         public string ApplicationNum { get; set; }

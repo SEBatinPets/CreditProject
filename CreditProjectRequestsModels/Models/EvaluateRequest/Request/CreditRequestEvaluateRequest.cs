@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace ServiceCreditRequest.Models.Outcoming.EvaluateRequest.Request
+namespace CreditProjectRequestsModels.Models.EvaluateRequest.Request
 {
+    /// <summary>
+    /// запрос создания заявки на скоринг
+    /// </summary>
     public class CreditRequestEvaluateRequest
     {
         public int Id { get; set; }

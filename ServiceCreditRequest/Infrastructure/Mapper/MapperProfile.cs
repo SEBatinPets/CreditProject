@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using CreditProjectRequestsModels.Models.CreateRequest.Request;
+using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
+using CreditProjectRequestsModels.Models.StatusRequest.Response;
 using ServiceCreditRequest.Models.Entities;
-using ServiceCreditRequest.Models.Incoming.Request;
-using ServiceCreditRequest.Models.Outcoming.EvaluateRequest.Request;
-using ServiceCreditRequest.Models.Outcoming.Response;
 
 namespace ServiceCreditRequest.Infrastructure.Mapper
 {

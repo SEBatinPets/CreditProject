@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
 using ServiceCreditRequest.Models.Entities;
-using ServiceCreditRequest.Models.Incoming.Request;
 
 namespace CreditScoring.Infrastructure.Mapper
 {

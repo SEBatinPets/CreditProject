@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceCreditRequest.Domain.Managers.Interfaces;
 using ServiceCreditRequest.Models.Entities;
-using ServiceCreditRequest.Models.Incoming.Request;
-using ServiceCreditRequest.Models.Incoming.Response;
-using ServiceCreditRequest.Models.ScoringResult.Request;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CreditProjectRequestsModels.Models.CreateRequest.Request;
+using CreditProjectRequestsModels.Models.CreateRequest.Response;
+using CreditProjectRequestsModels.Models.ScoringResultRequest.Request;
 
 namespace ServiceCreditRequest.Controllers
 {

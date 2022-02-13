@@ -1,4 +1,4 @@
-﻿using ServiceCreditRequest.Models.Outcoming.EvaluateRequest.Request;
+﻿using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
 using System.Threading.Tasks;
 
 namespace ServiceCreditRequest.Client

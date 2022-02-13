@@ -1,9 +1,8 @@
-﻿using ServiceCreditRequest.Models.Entities;
-using ServiceCreditRequest.Models.Incoming.Request;
-using ServiceCreditRequest.Models.Incoming.Response;
-using ServiceCreditRequest.Models.Outcoming.EvaluateRequest.Request;
-using ServiceCreditRequest.Models.Outcoming.Response;
-using ServiceCreditRequest.Models.ScoringResult.Request;
+﻿using CreditProjectRequestsModels.Models.CreateRequest.Request;
+using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
+using CreditProjectRequestsModels.Models.ScoringResultRequest.Request;
+using CreditProjectRequestsModels.Models.StatusRequest.Response;
+using ServiceCreditRequest.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -1,5 +1,5 @@
-﻿using CreditScoring.Data.SendResult.Interfaces;
-using CreditScoring.Models.ScoringResultRequest.Request;
+﻿using CreditProjectRequestsModels.Models.ScoringResultRequest.Request;
+using CreditScoring.Data.SendResult.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;

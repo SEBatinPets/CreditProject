@@ -1,8 +1,8 @@
-﻿using CreditScoring.Domain.Managers.Interfaces;
+﻿using CreditProjectRequestsModels.Models.EvaluateRequest.Request;
+using CreditScoring.Domain.Managers.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ServiceCreditRequest.Models.Incoming.Request;
 using System;
 using System.Threading.Tasks;
 
