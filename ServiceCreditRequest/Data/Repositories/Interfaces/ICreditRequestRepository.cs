@@ -7,7 +7,7 @@ namespace ServiceCreditRequest.Data.Repositories.Interfaces
 {
     public interface ICreditRequestRepository: IRepository<CreditRequest>
     {
-        Task UpdateScoring(bool scoringResult, DateTime scoringDate, int id);
-        Task<IEnumerable<int>> GetIdByScoringStatus(bool? scoringResult);
+        Task UpdateScoringAsync(bool scoringResult, DateTime scoringDate, int id);
+        Task<IEnumerable<int>> GetIdByScoringStatusAsync(bool? scoringResult);
     }
 }

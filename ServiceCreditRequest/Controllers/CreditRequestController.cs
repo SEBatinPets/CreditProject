@@ -30,9 +30,9 @@ namespace ServiceCreditRequest.Controllers
         /// <param name="creditRequest">заявка на кредит</param>
         /// <returns>int Id с котороым сохранена заявка</returns>
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CreditRequestCreateRequest creditRequest)
+        public async Task<IActionResult> CreateAsync([FromBody] CreditRequestCreateRequest creditRequest)
         {
-            int id = await manager.Create(creditRequest);
+            int id = await manager.CreateAsync(creditRequest);
 
             logger.LogInformation($"Create request {id}");
 
@@ -51,11 +51,11 @@ namespace ServiceCreditRequest.Controllers
         /// <param name="id">Id заявки на кредит</param>
         /// <returns></returns>
         [HttpGet("status/{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
         {
             logger.LogInformation($"Status request {id}");
 
-            var result = await manager.GetScoringById(id);
+            var result = await manager.GetScoringByIdAsync(id);
 
             return Ok(JsonSerializer.Serialize(result));
         }
@@ -66,11 +66,11 @@ namespace ServiceCreditRequest.Controllers
         /// <param name="result">результат скоринга</param>
         /// <returns></returns>
         [HttpPut("scoring/update")]
-        public async Task<IActionResult> UpdateScoring([FromBody] ScoringResultRequest result)
+        public async Task<IActionResult> UpdateScoringAsync([FromBody] ScoringResultRequest result)
         {
             logger.LogInformation($"Update scoring {result.Id}");
 
-            await manager.UpdateScoring(result);
+            await manager.UpdateScoringAsync(result);
 
             return Ok();
         }

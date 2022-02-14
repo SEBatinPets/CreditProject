@@ -27,7 +27,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// </summary>
         /// <param name="item">информация о кредите</param>
         /// <returns>id кредита</returns>
-        public async Task<int> Create(CreditContract item)
+        public async Task<int> CreateAsync(CreditContract item)
         {
             await using (var connection = new SqlConnection(connectionString))
             {
@@ -74,7 +74,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// </summary>
         /// <param name="id">id кредита</param>
         /// <returns>кредит</returns>
-        public async Task<CreditContract> GetById(int id)
+        public async Task<CreditContract> GetByIdAsync(int id)
         {
             logger.LogInformation($"Get request contract by id {id}");
             await using (var connection = new SqlConnection(connectionString))
