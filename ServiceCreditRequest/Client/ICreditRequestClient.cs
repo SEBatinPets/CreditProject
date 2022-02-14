@@ -5,6 +5,6 @@ namespace ServiceCreditRequest.Client
 {
     public interface ICreditRequestClient
     {
-        Task SendEvaluateRequest(CreditRequestEvaluateRequest creditRequest);
+        Task SendEvaluateRequestAsync(CreditRequestEvaluateRequest creditRequest);
     }
 }

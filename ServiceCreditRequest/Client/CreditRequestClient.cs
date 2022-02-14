@@ -33,7 +33,7 @@ namespace ServiceCreditRequest.Client
         /// </summary>
         /// <param name="creditRequest">заявка на кредит</param>
         /// <returns></returns>
-        public async Task SendEvaluateRequest(CreditRequestEvaluateRequest creditRequest)
+        public async Task SendEvaluateRequestAsync(CreditRequestEvaluateRequest creditRequest)
         {
             logger.LogInformation($"Send scoring request " +
                 $"applicant {creditRequest.ApplicationNum} id {creditRequest.Id}");

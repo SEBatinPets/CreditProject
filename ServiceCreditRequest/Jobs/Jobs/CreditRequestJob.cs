@@ -29,7 +29,7 @@ namespace ServiceCreditRequest.Jobs
 
             foreach (var request in requests)
             {
-                await client.SendEvaluateRequest(request);
+                await client.SendEvaluateRequestAsync(request);
             }
         }
     }
