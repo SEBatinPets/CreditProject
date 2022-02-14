@@ -11,11 +11,11 @@ namespace ServiceCreditRequest.Domain.Managers.Interfaces
 {
     public interface ICreditRequestManager
     {
-        public Task<int> Create(CreditRequestCreateRequest item);
-        public Task<CreditRequestStatusResponse> GetScoringById (int id);
-        public Task UpdateScoring(ScoringResultRequest item);
-        public Task<IEnumerable<CreditRequest>> GetByScoringStatus(bool? scoringStatus);
-        public Task<IEnumerable<CreditRequestEvaluateRequest>> GetForEvaluateRequest();
-        public Task<CreditRequest> GetById(int id);
+        public Task<int> CreateAsync(CreditRequestCreateRequest item);
+        public Task<CreditRequestStatusResponse> GetScoringByIdAsync (int id);
+        public Task UpdateScoringAsync(ScoringResultRequest item);
+        public Task<IEnumerable<CreditRequest>> GetByScoringStatusAsync(bool? scoringStatus);
+        public Task<IEnumerable<CreditRequestEvaluateRequest>> GetForEvaluateRequestAsync();
+        public Task<CreditRequest> GetByIdAsync(int id);
     }
 }

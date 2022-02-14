@@ -31,12 +31,12 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// </summary>
         /// <param name="item">новая заявка на кредит</param>
         /// <returns>id заявки на кредит</returns>
-        public async Task<int> Create(CreditRequest item)
+        public async Task<int> CreateAsync(CreditRequest item)
         {
             logger.LogInformation($"Create request applicant {item.ApplicationNum}");
 
             //проверка что договор существует
-            var exist = await GetByApplicationNum(item.ApplicationNum);
+            var exist = await GetByApplicationNumAsync(item.ApplicationNum);
             if (exist != null)
             {
                 return exist.Id;
@@ -83,7 +83,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// </summary>
         /// <param name="id">id заявки на кредит</param>
         /// <returns>заявка на кредит</returns>
-        public async Task<CreditRequest> GetById(int id)
+        public async Task<CreditRequest> GetByIdAsync(int id)
         {
             logger.LogInformation($"Get request by id {id}");
             await using (var connection = new SqlConnection(connectionString))
@@ -145,7 +145,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// </summary>
         /// <param name="scoringResult"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<int>> GetIdByScoringStatus(bool? scoringResult)
+        public async Task<IEnumerable<int>> GetIdByScoringStatusAsync(bool? scoringResult)
         {
             logger.LogInformation($"Get requests by scoring result {scoringResult}");
             if (scoringResult == null)
@@ -179,7 +179,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
             }
         }
 
-        public async Task UpdateScoring(bool scoringResult, DateTime scoringDate, int id)
+        public async Task UpdateScoringAsync(bool scoringResult, DateTime scoringDate, int id)
         {
             logger.LogInformation($"Update scoring result request by id {id}");
             await using (var connection = new SqlConnection(connectionString))
@@ -197,7 +197,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
             }
         }
 
-        public async Task<CreditRequest> GetByApplicationNum(string applicantNum)
+        public async Task<CreditRequest> GetByApplicationNumAsync(string applicantNum)
         {
             logger.LogInformation($"Get request by applicant num {applicantNum}");
             int? requestId;
@@ -213,7 +213,7 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
 
             if(requestId != null)
             {
-                return await GetById(requestId.Value);
+                return await GetByIdAsync(requestId.Value);
             } else
             {
                 return null;

@@ -25,11 +25,11 @@ namespace ServiceCreditRequest.Jobs
         {
             logger.LogInformation($"Start credit request job");
 
-            var requests = await requestManager.GetForEvaluateRequest();
+            var requests = await requestManager.GetForEvaluateRequestAsync();
 
             foreach (var request in requests)
             {
-                await client.SendEvaluateRequest(request);
+                await client.SendEvaluateRequestAsync(request);
             }
         }
     }

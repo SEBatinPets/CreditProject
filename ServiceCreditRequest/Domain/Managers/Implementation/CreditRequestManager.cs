@@ -35,50 +35,50 @@ namespace ServiceCreditRequest.Domain.Managers.Implementation
             this.applicantRepository = applicantRepository;
             this.logger = logger;
         }
-        public async Task<int> Create(CreditRequestCreateRequest item)
+        public async Task<int> CreateAsync(CreditRequestCreateRequest item)
         {
             logger.LogInformation($"Recieved credit create request {item.ApplicationNum}");
 
             var creditRequest = mapper.Map<CreditRequest>(item);
 
-            creditRequest.Applicant.Id = await applicantRepository.Create(creditRequest.Applicant);
-            creditRequest.RequestedCredit.Id = await contractRepository.Create(creditRequest.RequestedCredit);
+            creditRequest.Applicant.Id = await applicantRepository.CreateAsync(creditRequest.Applicant);
+            creditRequest.RequestedCredit.Id = await contractRepository.CreateAsync(creditRequest.RequestedCredit);
 
-            var id = await requestRepository.Create(creditRequest);
+            var id = await requestRepository.CreateAsync(creditRequest);
 
             return id;
         }
 
-        public async Task<CreditRequest> GetById(int id)
+        public async Task<CreditRequest> GetByIdAsync(int id)
         {
             logger.LogInformation($"Recieved credit get request by id {id}");
 
-            var request = await requestRepository.GetById(id);
-            request.Applicant = await applicantRepository.GetById(request.Applicant.Id);
-            request.RequestedCredit = await contractRepository.GetById(request.RequestedCredit.Id);
+            var request = await requestRepository.GetByIdAsync(id);
+            request.Applicant = await applicantRepository.GetByIdAsync(request.Applicant.Id);
+            request.RequestedCredit = await contractRepository.GetByIdAsync(request.RequestedCredit.Id);
             return request;
         }
 
-        public async Task<IEnumerable<CreditRequest>> GetByScoringStatus(bool? scoringStatus)
+        public async Task<IEnumerable<CreditRequest>> GetByScoringStatusAsync(bool? scoringStatus)
         {
             logger.LogInformation($"Recieved credit scoring status request by status {scoringStatus}");
 
-            var requestsId = await requestRepository.GetIdByScoringStatus(scoringStatus);
+            var requestsId = await requestRepository.GetIdByScoringStatusAsync(scoringStatus);
             List<CreditRequest> result = new List<CreditRequest>();
             foreach(int id in requestsId)
             {
-                var request = await GetById(id);
+                var request = await GetByIdAsync(id);
                 result.Add(request);
             }
             return result;
         }
 
-        public async Task<IEnumerable<CreditRequestEvaluateRequest>> GetForEvaluateRequest()
+        public async Task<IEnumerable<CreditRequestEvaluateRequest>> GetForEvaluateRequestAsync()
         {
             logger.LogInformation($"Recieved credit get for evaluated request");
 
             var result = new List<CreditRequestEvaluateRequest>();
-            var requests = await GetByScoringStatus(null);
+            var requests = await GetByScoringStatusAsync(null);
             foreach(var request in requests)
             {
                 result.Add(mapper.Map<CreditRequestEvaluateRequest>(request));
@@ -86,30 +86,30 @@ namespace ServiceCreditRequest.Domain.Managers.Implementation
             return result;
         }
 
-        public async Task<CreditRequestStatusResponse> GetScoringById(int id)
+        public async Task<CreditRequestStatusResponse> GetScoringByIdAsync(int id)
         {
             logger.LogInformation($"Recieved credit get scoring request by id {id}");
 
-            var creditRequest = await requestRepository.GetById(id);
+            var creditRequest = await requestRepository.GetByIdAsync(id);
 
             if(creditRequest == null)
             {
                 return null;
             }
 
-            creditRequest.Applicant = await applicantRepository.GetById(creditRequest.Applicant.Id);
-            creditRequest.RequestedCredit = await contractRepository.GetById(creditRequest.RequestedCredit.Id);
+            creditRequest.Applicant = await applicantRepository.GetByIdAsync(creditRequest.Applicant.Id);
+            creditRequest.RequestedCredit = await contractRepository.GetByIdAsync(creditRequest.RequestedCredit.Id);
 
             var result = mapper.Map<CreditRequestStatusResponse>(creditRequest);
 
             return result;
         }
 
-        public async Task UpdateScoring(ScoringResultRequest item)
+        public async Task UpdateScoringAsync(ScoringResultRequest item)
         {
             logger.LogInformation($"Recieved credit update scoring request for id {item.Id}");
 
-            await requestRepository.UpdateScoring(item.ScoringStatus, item.ScoringDate, item.Id);
+            await requestRepository.UpdateScoringAsync(item.ScoringStatus, item.ScoringDate, item.Id);
         }
     }
 }
