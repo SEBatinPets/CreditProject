@@ -9,5 +9,6 @@ namespace ServiceCreditRequest.Data.Repositories.Interfaces
     {
         Task UpdateScoring(bool scoringResult, DateTime scoringDate, int id);
         Task<IEnumerable<int>> GetIdByScoringStatus(bool? scoringResult);
+        Task<CreditRequest> GetByApplicationNum(string applicantNum);
     }
 }

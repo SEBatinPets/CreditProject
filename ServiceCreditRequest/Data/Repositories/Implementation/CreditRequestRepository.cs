@@ -34,6 +34,14 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         public async Task<int> Create(CreditRequest item)
         {
             logger.LogInformation($"Create request applicant {item.ApplicationNum}");
+
+            //проверка что договор существует
+            var exist = await GetByApplicationNum(item.ApplicationNum);
+            if (exist != null)
+            {
+                return exist.Id;
+            }
+
             await using(var connection = new SqlConnection(connectionString))
             {
                 int id = await connection.QuerySingleAsync<int>("INSERT INTO credit_requests(" +
@@ -187,6 +195,30 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
                         id = id
                     });
             }
+        }
+
+        public async Task<CreditRequest> GetByApplicationNum(string applicantNum)
+        {
+            logger.LogInformation($"Get request by applicant num {applicantNum}");
+            int? requestId;
+            await using (var connection = new SqlConnection(connectionString))
+            {
+                requestId = await connection.QuerySingleOrDefaultAsync<int?>(
+                    "SELECT id FROM credit_requests WHERE application_num=@application_num",
+                    new
+                    {
+                        application_num = applicantNum
+                    });
+            }
+
+            if(requestId != null)
+            {
+                return await GetById(requestId.Value);
+            } else
+            {
+                return null;
+            }
+
         }
     }
 }

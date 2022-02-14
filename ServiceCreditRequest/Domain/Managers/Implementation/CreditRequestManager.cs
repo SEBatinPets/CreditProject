@@ -92,6 +92,11 @@ namespace ServiceCreditRequest.Domain.Managers.Implementation
 
             var creditRequest = await requestRepository.GetById(id);
 
+            if(creditRequest == null)
+            {
+                return null;
+            }
+
             creditRequest.Applicant = await applicantRepository.GetById(creditRequest.Applicant.Id);
             creditRequest.RequestedCredit = await contractRepository.GetById(creditRequest.RequestedCredit.Id);
 

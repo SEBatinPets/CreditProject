@@ -29,6 +29,11 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// <returns>id кредита</returns>
         public async Task<int> Create(CreditContract item)
         {
+            var exist = await Exist(item);
+            if (exist != null)
+            {
+                return exist.Id;
+            }
             await using (var connection = new SqlConnection(connectionString))
             {
                 int id = await connection.QuerySingleAsync<int>(
@@ -95,6 +100,42 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
                     });
 
                 return result;
+            }
+        }
+        private async Task<CreditContract> Exist(CreditContract item)
+        {
+            int? requestId;
+            await using (var connection = new SqlConnection(connectionString))
+            {
+                requestId = await connection.QuerySingleOrDefaultAsync<int?>(
+                    "SELECT id " +
+                    "FROM credit_contracts " +
+                    "WHERE " +
+                    "credit_type=@credit_type AND " +
+                    "requested_amount=@requested_amount AND " +
+                    "requested_currency=@requested_currency AND " +
+                    "annual_salary=@annual_salary AND " +
+                    "month_salary=@month_salary AND " +
+                    "company_name=@company_name AND " +
+                    "comment=@comment", 
+                    new
+                    {
+                        credit_type = item.CreditType,
+                        requested_amount = item.RequestedAmount,
+                        requested_currency = item.RequestedCurrency,
+                        annual_salary = item.AnnualSalary,
+                        month_salary = item.MonthlySalary,
+                        company_name = item.CompanyName,
+                        comment = item.Comment
+                    });
+            }
+            if(requestId != null)
+            {
+                return await GetById(requestId.Value);
+            }
+            else
+            {
+                return null;
             }
         }
     }

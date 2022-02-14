@@ -29,6 +29,11 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
         /// <returns>id добавленного получателя в бд</returns>
         public async Task<int> Create(CreditApplicant item)
         {
+            var exist = await Exist(item);
+            if (exist != null)
+            {
+                return exist.Id;
+            }
             await using (var connection = new SqlConnection(connectionString))
             {
                 int id = await connection.QuerySingleAsync<int>(
@@ -107,6 +112,48 @@ namespace ServiceCreditRequest.Data.Repositories.Implementation
                     });
 
                 return result;
+            }
+        }
+        private async Task<CreditApplicant> Exist(CreditApplicant item)
+        {
+            logger.LogInformation($"Get request exist applicant num passport {item.PassportNum}");
+            int? requestId;
+            await using (var connection = new SqlConnection(connectionString))
+            {
+                requestId = await connection.QuerySingleOrDefaultAsync<int?>(
+                    "SELECT id FROM credit_applicants WHERE " +
+                    "first_name=@first_name AND " +
+                    "middle_name=@middle_name AND " +
+                    "last_name=@last_name AND " +
+                    "date_birth=@date_birth AND " +
+                    "city_birth=@city_birth AND " +
+                    "adress_birth=@adress_birth AND " +
+                    "adress_current=@adress_current AND " +
+                    "inn=@inn AND " +
+                    "snils=@snils AND " +
+                    "passport_num=@passport_num",
+                    new
+                    {
+                        first_name = item.FirstName,
+                        middle_name = item.MiddleName,
+                        last_name = item.LastName,
+                        date_birth = item.DateBirth,
+                        city_birth = item.CityBirth,
+                        adress_birth = item.AddressBirth,
+                        adress_current = item.AddressCurrent,
+                        inn = item.INN,
+                        snils = item.SNILS,
+                        passport_num = item.PassportNum
+                    });
+            }
+
+            if (requestId != null)
+            {
+                return await GetById(requestId.Value);
+            }
+            else
+            {
+                return null;
             }
         }
     }
