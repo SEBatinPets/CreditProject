@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using CreditProjectRequestsModels.Models.CreateRequest.Request;
 using CreditProjectRequestsModels.Models.CreateRequest.Response;
 using CreditProjectRequestsModels.Models.ScoringResultRequest.Request;
+using CreditProjectRequestsModels.Models.StatusRequest.Request;
 
 namespace ServiceCreditRequest.Controllers
 {
@@ -50,12 +51,12 @@ namespace ServiceCreditRequest.Controllers
         /// </summary>
         /// <param name="id">Id заявки на кредит</param>
         /// <returns></returns>
-        [HttpGet("status/{id}")]
-        public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
+        [HttpGet("status")]
+        public async Task<IActionResult> GetByIdAsync([FromBody] StatusRequest statusRequest)
         {
-            logger.LogInformation($"Status request {id}");
+            logger.LogInformation($"Status request {statusRequest.Id}");
 
-            var result = await manager.GetScoringByIdAsync(id);
+            var result = await manager.GetScoringByIdAsync(statusRequest.Id);
 
             return Ok(JsonSerializer.Serialize(result));
         }
